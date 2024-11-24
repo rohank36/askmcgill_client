@@ -23,6 +23,8 @@ export default function Home() {
     }
   };
 
+  const toastIconColor = "#ff5d62"
+  const toastIconColorHover = "#ed1b2f"
 
   const handleSubmit = async(e:any) =>{
     e.preventDefault();
@@ -62,14 +64,15 @@ export default function Home() {
 
 
   return (
-    <main>
+    <main className="font-inter">
       <div className="flex flex-col items-center justify-center min-h-screen pb-56">
-          <h1 className="font-bold text-5xl text-red-500">Welcome to AskMcGill 💻</h1>
-          <h3 className="text-md text-slate-500 mt-2">Simplifying your search for McGill courses and resources</h3>
+          <Image src="/askmcgill_icon.png" alt="AskMcGill Logo" width={75} height={75}/>
+          <h1 className="font-bold text-5xl text-headlineText mt-12">Welcome to AskMcGill</h1>
+          <h3 className="text-md text-regularText mt-2 mb-5">Simplifying your search for McGill courses and resources</h3>
 
           <form className="flex gap-2 w-1/2 h-12 mt-10 border rounded-lg shadow-sm focus:ring-2 focus:ring-slate-200 p-2" onSubmit={handleSubmit}>
             <input 
-              className="rounded-lg w-full focus:outline-none px-4" 
+              className="rounded-lg w-full focus:outline-none px-4 font-inter text-sm" 
               placeholder="Let's get that semester sorted... what's first?" 
               type="text" 
               id="query" 
@@ -79,19 +82,19 @@ export default function Home() {
             <button 
               type="submit" 
               disabled={loading}
-              className="flex p-2 items-center justify-center bg-red-600 rounded-full text-white font-bold hover:bg-red-800 transition duration-300 ease-in-out hover:scale-110"
+              className="flex p-2 items-center justify-center bg-iconsClicked rounded-full text-white font-bold hover:bg-mcgillRed transition duration-300 ease-in-out hover:scale-110"
               ><MoveRight size={16} strokeWidth={3}/>
             </button>
           </form>
 
           <div className="flex absolute items-center justify-center bottom-3 gap-32">
-            <h3 className="text-xs text-slate-500">The information has been retrieved from McGill University's academic websites and may contain errors or need updates</h3>
+            <h3 className="text-xs text-regularText">The information has been retrieved from McGill University's academic websites and may contain errors or need updates</h3>
           </div>
 
           <div className="toast toast-start gap-y-4">
-            <button className="hover:scale-110 transition duration-500 ease-in-out" onClick={() => openModal(modalRef3)}><MessageCircle color="red" size={30} /></button>
+            <button className="hover:scale-110 transition duration-500 ease-in-out" onClick={() => openModal(modalRef3)}><MessageCircle color={toastIconColor} size={20} /></button>
             <dialog ref={modalRef3} className="modal">
-              <div className="modal-box">
+              <div className="modal-boxt">
                 <h3 className="font-bold text-lg">Have any suggestions?</h3>
                 <div className="flex flex-col gap-y-4 py-4">
                   <p className="text-wrap">We'd love to hear your feedback to improve the product.</p>
@@ -103,7 +106,7 @@ export default function Home() {
               </form>
             </dialog>
 
-            <button className="hover:scale-110 transition duration-500 ease-in-out" onClick={() => openModal(modalRef1)}><CircleHelp color="red" size={30}/></button>
+            <button className="hover:scale-110 transition duration-500 ease-in-out" onClick={() => openModal(modalRef1)}><CircleHelp color={toastIconColor} size={20}/></button>
             <dialog ref={modalRef1} className="modal">
               <div className="modal-box">
                 <h3 className="font-bold text-lg ">Faced an issue while using AskMcGill?</h3>
@@ -116,7 +119,7 @@ export default function Home() {
               </form>
             </dialog>
 
-            <button className="hover:scale-110 transition duration-500 ease-in-out" onClick={() => openModal(modalRef2)}><Info color="red" size={30}/></button>
+            <button className="hover:scale-110 transition duration-500 ease-in-out" onClick={() => openModal(modalRef2)}><Info color={toastIconColor} size={20}/></button>
             <dialog ref={modalRef2} className="modal">
               <div className="modal-box">
                 <h3 className="font-bold text-lg">What is AskMcGill?</h3>

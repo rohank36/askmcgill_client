@@ -11,6 +11,14 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        iconsNotClicked: "#f9fafc",
+        iconsClicked: "#ff5d62",
+        regularText: "#7c7c7c",
+        headlineText: "484848",
+        mcgillRed: "#ed1b2f",
+      },
+      fontFamily: {
+        inter: ["var(--font-inter)", "sans-serif"], 
       },
     },
   },
