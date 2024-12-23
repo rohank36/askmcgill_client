@@ -46,6 +46,7 @@ export default function Home() {
     }catch(error){
       console.error("Error getting query answer:", error);
       console.log(error)
+      alert('Error getting an answer.');
     }finally{
       //setQuery("");
       setLoading(false);

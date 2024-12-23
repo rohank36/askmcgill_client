@@ -36,7 +36,7 @@ const ToastBtns = () =>{
               <div className="modal-box">
                 <h3 className="font-bold text-lg ">Faced an issue while using AskMcGill?</h3>
                 <div className="flex flex-col gap-y-4 py-4">
-                  <p className="text-wrap">Please contact _________ and we'll immediately work to resolve it. Thank you for your patience and understanding.</p>
+                  <p className="text-wrap">Please contact _________ or message in the Bug channel on the discord and we'll immediately work to resolve it. Thank you for your patience and understanding.</p>
                 </div>
               </div>
               <form method="dialog" className="modal-backdrop">

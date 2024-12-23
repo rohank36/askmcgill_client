@@ -8,15 +8,10 @@ import SearchBar from '../components/SearchBar';
 
 export default function AnswerPage(){
     const { queryData, setQueryData } = useQueryContext();
-    const [displayQuery, setDisplayQuery] = useState<string>("What is the difference between COMP 251 and COMP 252?");
-    //const [time, setTime] = useState<Number>(0);
-    const [time, setTime] = useState<Number>(1.233);
-    const [sources, setSources] = useState<string[]>(["https://www.mcgill.ca/gradapplicants/gradlife/experience",
-    "https://www.mcgill.ca/gradapplicants/gradlife/experience",
-    "https://www.mcgill.ca/gradapplicants/gradlife/experience",
-    "https://www.mcgill.ca/gradapplicants/gradlife/experience",
-    "https://www.mcgill.ca/gradapplicants/gradlife/experience",]);
-    const [answer, setAnswer] = useState<string>("The course codes COMP 251 and COMP 252 typically refer to specific computer science courses at a university or college. COMP 251 is often an introductory course in algorithms and data structures, while COMP 252 might be a continuation, covering more advanced topics.");
+    const [displayQuery, setDisplayQuery] = useState<string>("");
+    const [time, setTime] = useState<Number>(0);
+    const [sources, setSources] = useState<string[]>([]);
+    const [answer, setAnswer] = useState<string>("");
     const [loading, setLoading] = useState<boolean>(false);
 
     useEffect(() => {
@@ -63,6 +58,7 @@ export default function AnswerPage(){
         }
         
       }catch(error){
+        alert('Error getting an answer.');
         console.error("Error getting query answer:", error);
         console.log(error)
       }finally{
@@ -77,7 +73,7 @@ export default function AnswerPage(){
           {/* Display Query */}
           <div className="w-full py-4 border items-center flex flex-col justify-center gap-y-2">
             <h1 className="text-xl font-bold text-gray-700">{displayQuery}</h1>
-            <h3 className='text-xs text-regularText'>{`Answered in ${time} seconds`}</h3>
+            <h3 className='text-xs text-regularText'>{`Answered in ${time.toFixed(4)} seconds`}</h3>
           </div>
           
           {!loading ? (
