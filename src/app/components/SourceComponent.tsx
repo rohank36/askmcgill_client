@@ -4,10 +4,10 @@ const SourceComponent = ({ source }: { source: string }) =>{
 
     return(
         <div 
-        className="border-2 p-2 bg-gray-100 rounded-lg cursor-pointer hover:bg-gray-300 transition"
+        className="p-4 bg-gray-100 rounded-lg cursor-pointer hover:bg-gray-300 transition break-words"
         onClick={() => window.open(source, "_blank")}
         >
-            <h1>{source}</h1>
+            <h1 className="text-sm">{source}</h1>
         </div>
     );
 };
