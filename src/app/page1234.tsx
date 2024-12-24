@@ -54,7 +54,6 @@ export default function Home() {
       
       
     }catch(error){
-      console.error("Error getting query answer:", error);
       console.log(error)
     }finally{
       //setQuery("");

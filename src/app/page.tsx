@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
 import Footer from "./components/Footer";
 import ToastBtns from "./components/ToastBtns";
+import Prompts from "./components/Prompts";
 import { useQueryContext } from "./QueryContext";
 
 export default function Home() {
@@ -44,8 +45,8 @@ export default function Home() {
       }
       
     }catch(error){
-      console.error("Error getting query answer:", error);
       console.log(error)
+      setLoading(false);
       alert('Error getting an answer.');
     }finally{
       //setQuery("");
@@ -55,9 +56,19 @@ export default function Home() {
 
   return (
     <main className="font-inter">
-      <div className="flex flex-col items-center justify-center min-h-screen pb-56">
+      <div className="flex flex-col items-center justify-center min-h-screen pb-36">
         <Header />
-        {loading ?  <span className="loading loading-spinner loading-lg text-red-500 mt-36"></span> : (<SearchBar onSubmit={handleSubmit} loading={loading} placeholder="Let's get that semester sorted... what's first?" />)}
+        {loading ?  <span className="loading loading-spinner loading-lg text-red-500 pt-16"></span> : (
+          <div className="w-full flex flex-col justify-center items-center">
+            <SearchBar onSubmit={handleSubmit} loading={loading} placeholder="Let's get that semester sorted... what's first?" />
+            <div className="flex flex-row gap-4 mt-10">
+              <Prompts onSubmit={handleSubmit} prompt="What machine learning related COMP courses are there?"/>
+              <Prompts onSubmit={handleSubmit} prompt="Who is teaching MATH 141 next semester?"/>
+              <Prompts onSubmit={handleSubmit} prompt="Tell me which courses David Meger is teaching?"/>
+              <Prompts onSubmit={handleSubmit} prompt="Which 400+ level FINE courses don't require FINE 342 as a pre req?"/>
+            </div>
+          </div>
+          )}
         <Footer />
         <ToastBtns />
       </div>

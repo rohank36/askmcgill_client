@@ -5,6 +5,7 @@ import SourceComponent from '../components/SourceComponent';
 import Footer from '../components/Footer';
 import ToastBtns from '../components/ToastBtns';
 import SearchBar from '../components/SearchBar';
+import Image from "next/image";
 
 export default function AnswerPage(){
     const { queryData, setQueryData } = useQueryContext();
@@ -59,7 +60,6 @@ export default function AnswerPage(){
         
       }catch(error){
         alert('Error getting an answer.');
-        console.error("Error getting query answer:", error);
         console.log(error)
       }finally{
         //setQuery("");
@@ -81,7 +81,10 @@ export default function AnswerPage(){
             {/* Answer Section */}
             <div className="flex-1 max-w-[80%] h-full py-4">
               <div className='px-36 overflow-auto'>
-                <h2 className="font-bold text-lg text-gray-700 mb-4">Answer</h2>
+                <div className='flex flex-row gap-2'>
+                  <img src="/red_circle_icon_2.png" alt="Ask McGill Circlular logo" style={{ width: "32px", height: "32px" }}/>
+                  <h2 className="font-bold text-lg text-gray-700 mb-4">Answer</h2>
+                </div>
                 <p className="whitespace-pre-wrap text-gray-700">{answer}</p>
               </div>
               <div className='flex justify-center items-center w-full absolute bottom-12'>
@@ -90,11 +93,14 @@ export default function AnswerPage(){
             </div>
 
             {/* Sources Section */}
-            <div className="flex flex-col py-4 px-6 max-w-[20%] overflow-y-auto space-y-4">
-                    <h1 className='font-bold text-lg text-gray-700'>Sources</h1>
-                    {sources.map((source, index) => (
-                      <SourceComponent key={index} source={source} />
-                    ))}
+            <div className="flex flex-col py-4 pl-6 pr-10 max-w-[20%] overflow-y-auto space-y-4">
+              <div className='flex flex-row gap-2'>
+                <img src="black_bird.png" alt="Ask McGill Black Logo" style={{ width: "26px", height: "28px"}} />
+                <h1 className='font-bold text-lg text-gray-700'>Sources</h1>
+              </div>
+              {sources.map((source, index) => (
+                <SourceComponent key={index} source={source} />
+              ))}
             </div>
           </div>
           ):(
