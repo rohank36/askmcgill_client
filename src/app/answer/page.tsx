@@ -17,7 +17,7 @@ export default function AnswerPage(){
 
     useEffect(() => {
       if(queryData){
-        console.log(queryData)
+        //console.log(queryData)
         setDisplayQuery(queryData.query)
         setTime(queryData.time)
         setSources(queryData.sources)
@@ -62,8 +62,18 @@ export default function AnswerPage(){
         alert('Error getting an answer.');
         console.log(error)
       }finally{
-        //setQuery("");
         setLoading(false);
+        //After answers have been retrieved for user, track user query
+        await fetch(`http://127.0.0.1:5000/trackQuery`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ 
+            user_id: localStorage.getItem('user_id'), 
+            query: query
+          }),
+        });
       }
     }
 

@@ -1,5 +1,5 @@
 'use client'
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useRouter } from 'next/navigation';
 import Header from "./components/Header";
 import SearchBar from "./components/SearchBar";
@@ -7,11 +7,19 @@ import Footer from "./components/Footer";
 import ToastBtns from "./components/ToastBtns";
 import Prompts from "./components/Prompts";
 import { useQueryContext } from "./QueryContext";
+import { generateUUID } from "./uuidGenerator";
 
 export default function Home() {
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
   const { setQueryData } = useQueryContext();
+
+  //On landing page mount, get or set UUID to keep track of user w/o having to create an account
+  useEffect(()=>{
+    if (!localStorage.getItem('user_id')) {
+      localStorage.setItem('user_id', generateUUID());
+    }
+  },[])
 
   const handleSubmit = async(e:React.FormEvent, query:string) =>{
     e.preventDefault();
@@ -40,6 +48,19 @@ export default function Home() {
         });
         setLoading(false);
         router.push("/answer");
+
+        //After answers have been retrieved for user, track user query
+        await fetch(`http://127.0.0.1:5000/trackQuery`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ 
+            user_id: localStorage.getItem('user_id'), 
+            query: query
+          }),
+        });
+
       }else{
         alert('Error getting an answer.');
       }
