@@ -89,7 +89,7 @@ export default function Home() {
             <SearchBar onSubmit={handleSubmit} loading={loading} placeholder="Let's get that semester sorted... what's first?" />
             <div className="flex flex-row gap-4 mt-10">
               <Prompts onSubmit={handleSubmit} prompt="What machine learning related COMP courses are there?"/>
-              <Prompts onSubmit={handleSubmit} prompt="Who is teaching MATH 141 in the winter?"/>
+              <Prompts onSubmit={handleSubmit} prompt="What courses can I take to learn more about Aristotle?"/>
               <Prompts onSubmit={handleSubmit} prompt="Tell me which courses David Meger is teaching"/>
               <Prompts onSubmit={handleSubmit} prompt="Which 400+ level FINE courses don't require FINE 342 as a pre req?"/>
             </div>
