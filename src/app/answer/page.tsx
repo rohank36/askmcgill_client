@@ -92,7 +92,10 @@ export default function AnswerPage(){
         {/* Loading State */}
         {loading ? (
           <div className="flex-1 flex justify-center items-center">
-            <span className="loading loading-spinner loading-lg text-red-500"></span>
+            <div className='flex flex-col justify-center items-center space-y-5'>
+              <span className="loading loading-spinner loading-lg text-red-500"></span>
+              <p className='text-xs text-regularText'>Thinking - may take a few seconds ...</p>
+            </div>
           </div>
         ) : (
           <>
@@ -108,7 +111,7 @@ export default function AnswerPage(){
                   />
                   <h2 className="font-bold text-lg text-gray-700">Answer</h2>
                 </div>
-                <p className="whitespace-pre-wrap text-gray-700">{answer}</p>
+                <div className="whitespace-pre-wrap text-gray-700">{answer}</div>
               </div>
     
               {/* Sources Section (no scrolling) */}

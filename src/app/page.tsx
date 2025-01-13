@@ -79,7 +79,12 @@ export default function Home() {
     <main className="font-inter">
       <div className="flex flex-col items-center justify-center min-h-screen pb-36">
         <Header />
-        {loading ?  <span className="loading loading-spinner loading-lg text-red-500 pt-16"></span> : (
+        {loading ?  
+          <div className="flex flex-col items-center justify-center space-y-5 mt-10">
+            <span className="loading loading-spinner loading-lg text-red-500 pt-16"></span>
+            <p className='text-xs text-regularText'>Thinking - may take a few seconds ...</p> 
+          </div>
+        : (
           <div className="w-full flex flex-col justify-center items-center">
             <SearchBar onSubmit={handleSubmit} loading={loading} placeholder="Let's get that semester sorted... what's first?" />
             <div className="flex flex-row gap-4 mt-10">
