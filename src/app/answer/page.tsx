@@ -77,52 +77,71 @@ export default function AnswerPage(){
       }
     }
 
-    return(
-        <div className='flex flex-col min-h-screen'>
-
-          {/* Display Query */}
-          <div className="w-full py-4 border items-center flex flex-col justify-center gap-y-2">
+    return (
+      <div className="flex flex-col h-screen overflow-hidden">
+        {/* Top Section: Display Query */}
+        <div className="flex-none border-b">
+          <div className="w-full py-4 items-center flex flex-col justify-center gap-y-2">
             <h1 className="text-xl font-bold text-gray-700">{displayQuery}</h1>
-            <h3 className='text-xs text-regularText'>{`Answered in ${time.toFixed(4)} seconds`}</h3>
+            <h3 className="text-xs text-regularText">
+              {`Answered in ${time.toFixed(4)} seconds`}
+            </h3>
           </div>
-          
-          {!loading ? (
-            <div className="flex flex-row w-full h-full">
-            {/* Answer Section */}
-            <div className="flex-1 max-w-[80%] h-full py-4">
-              <div className='px-36 overflow-auto'>
-                <div className='flex flex-row gap-2'>
-                  <img src="/red_circle_icon_2.png" alt="Ask McGill Circlular logo" style={{ width: "32px", height: "32px" }}/>
-                  <h2 className="font-bold text-lg text-gray-700 mb-4">Answer</h2>
+        </div>
+    
+        {/* Loading State */}
+        {loading ? (
+          <div className="flex-1 flex justify-center items-center">
+            <span className="loading loading-spinner loading-lg text-red-500"></span>
+          </div>
+        ) : (
+          <>
+            {/* Middle Container: Answer + Sources (fills remaining space) */}
+            <div className="flex flex-row flex-1 overflow-hidden">
+              {/* Answer Section (scrollable) */}
+              <div className="flex-1 py-4 px-6 md:px-36 overflow-y-auto no-scrollbar">
+                <div className="flex flex-row gap-2 mb-4">
+                  <img
+                    src="/red_circle_icon_2.png"
+                    alt="Ask McGill Circular logo"
+                    style={{ width: "32px", height: "32px" }}
+                  />
+                  <h2 className="font-bold text-lg text-gray-700">Answer</h2>
                 </div>
                 <p className="whitespace-pre-wrap text-gray-700">{answer}</p>
               </div>
-              <div className='flex justify-center items-center w-full absolute bottom-12'>
-                <SearchBar onSubmit={handleSubmit} loading={loading} placeholder="What else do you want to know?"/>
+    
+              {/* Sources Section (no scrolling) */}
+              <div className="w-[20%] py-4 pl-4 pr-6 md:pl-6 md:pr-10">
+                <div className="flex flex-row gap-2 mb-2">
+                  <img
+                    src="black_bird.png"
+                    alt="Ask McGill Black Logo"
+                    style={{ width: "26px", height: "28px" }}
+                  />
+                  <h1 className="font-bold text-lg text-gray-700">Sources</h1>
+                </div>
+                <div className="flex flex-col space-y-4">
+                  {sources.map((source, index) => (
+                    <SourceComponent key={index} source={source} />
+                  ))}
+                </div>
               </div>
             </div>
-
-            {/* Sources Section */}
-            <div className="flex flex-col py-4 pl-6 pr-10 max-w-[20%] overflow-y-auto space-y-4">
-              <div className='flex flex-row gap-2'>
-                <img src="black_bird.png" alt="Ask McGill Black Logo" style={{ width: "26px", height: "28px"}} />
-                <h1 className='font-bold text-lg text-gray-700'>Sources</h1>
-              </div>
-              {sources.map((source, index) => (
-                <SourceComponent key={index} source={source} />
-              ))}
+    
+            {/* Bottom Section: Search Bar, Footer, Toasts */}
+            <div className="flex-none flex flex-col items-center justify-center py-4 gap-y-3">
+              <SearchBar
+                onSubmit={handleSubmit}
+                loading={loading}
+                placeholder="What else do you want to know?"
+              />
+              <h3 className="text-xs text-regularText">The information has been retrieved from McGill University's academic websites and may contain errors or need updates</h3>
+              <ToastBtns />
             </div>
-          </div>
-          ):(
-            <div className='flex justify-center items-center mt-48'>
-              <span className="loading loading-spinner loading-lg text-red-500"></span>
-            </div>
-          )}
-          
-          <div className='flex justify-center'>
-            <Footer />
-          </div>
-          <ToastBtns />
-        </div>
+          </>
+        )}
+      </div>
     );
+    
 }
