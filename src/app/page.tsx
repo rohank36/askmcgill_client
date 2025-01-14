@@ -26,7 +26,9 @@ export default function Home() {
     setLoading(true);
     
     try{
-      const res = await fetch(`http://127.0.0.1:5000/query`, {
+      //http://127.0.0.1:5000/query
+      //http://127.0.0.1:5000/trackQuery
+      const res = await fetch(`http://147.79.75.137/query`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,7 +52,7 @@ export default function Home() {
         router.push("/answer");
 
         //After answers have been retrieved for user, track user query
-        await fetch(`http://127.0.0.1:5000/trackQuery`, {
+        await fetch(`http://147.79.75.137/trackQuery`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
