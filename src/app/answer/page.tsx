@@ -13,6 +13,7 @@ export default function AnswerPage() {
   const [sources, setSources] = useState<string[]>([]);
   const [answer, setAnswer] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
   useEffect(() => {
     if (queryData) {
@@ -20,6 +21,7 @@ export default function AnswerPage() {
       setTime(queryData.time);
       setSources(queryData.sources);
       setAnswer(queryData.answer);
+      setIsVisible(true);
     }
   }, [queryData]);
 
@@ -56,6 +58,7 @@ export default function AnswerPage() {
         setTime(data.elapsed_time);
         setSources(data.sources);
         setAnswer(parsedAnswer);
+        setIsVisible(true);
       } else {
         alert('Error getting an answer.');
       }
@@ -112,9 +115,9 @@ export default function AnswerPage() {
                 />
                 <h2 className="font-bold text-lg text-gray-700">Answer</h2>
               </div>
-              {/* Render the parsed HTML answer */}
+              {/* Render the parsed HTML answer with dropdown animation */}
               <div
-                className="whitespace-pre-wrap text-gray-700"
+                className={`answer-content whitespace-pre-wrap text-gray-700 ${isVisible ? 'visible' : ''}`}
                 dangerouslySetInnerHTML={{ __html: marked(answer) }}
               />
             </div>
@@ -129,7 +132,7 @@ export default function AnswerPage() {
                 />
                 <h1 className="font-bold text-lg text-gray-700">Sources</h1>
               </div>
-              <div className="flex flex-col space-y-4">
+              <div className="flex flex-col space-y-4 sources-content">
                 {sources.map((source, index) => (
                   <SourceComponent key={index} source={source} />
                 ))}
