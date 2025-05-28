@@ -4,7 +4,7 @@ import { MoveRight} from 'lucide-react';
 const SearchBar = ({ onSubmit, loading, placeholder }: { onSubmit: (e: React.FormEvent, query: string) => void; loading: boolean; placeholder: string }) => {
     const [query, setQuery] = useState('');
 
-    const userMsg = "Hi there\nAskMcGill hasn't been updated and doesn't have the right information for the new school year. We've noticed a massive spike in y'all coming here to ask questions and have decided to disable the service to ensure we don't tell you the wrong things. Reddit and reaching out to other students via LinkedIn or Facebook/WhatsApp groups is a good alternative.\nWe wish you all the best for the school year, you're gonna absolutely kill it!!! Have so much fun - AskMcGill Team :)"
+    const userMsg = "Hi there\nAskMcGill hasn't been updated and doesn't have the right information for the new school year. We've noticed a massive spike in y'all coming here to ask questions and have decided to disable the service until we update it to ensure we don't tell you the wrong things. Reddit and reaching out to other students via LinkedIn or Facebook/WhatsApp groups is a good alternative.\nWe wish you all the best for the school year, you're gonna absolutely kill it!!! Have so much fun - AskMcGill Team :)"
   
     const handleSubmit = (e: React.FormEvent) => {
       e.preventDefault();

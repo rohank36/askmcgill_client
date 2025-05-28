@@ -1,7 +1,7 @@
 import { CornerDownRight } from 'lucide-react';
 
 const Prompts = ({onSubmit, prompt}:{onSubmit: (e: React.FormEvent, query: string) => void; prompt:string}) => {
-    const userMsg = "Hi there\nAskMcGill hasn't been updated and doesn't have the right information for the new school year. We've noticed a massive spike in y'all coming here to ask questions and have decided to disable the service to ensure we don't tell you the wrong things. Reddit and reaching out to other students via LinkedIn or Facebook/WhatsApp groups is a good alternative.\nWe wish you all the best for the school year, you're gonna absolutely kill it!!! Have so much fun - AskMcGill Team :)"
+    const userMsg = "Hi there\nAskMcGill hasn't been updated and doesn't have the right information for the new school year. We've noticed a massive spike in y'all coming here to ask questions and have decided to disable the service until we update it to ensure we don't tell you the wrong things. Reddit and reaching out to other students via LinkedIn or Facebook/WhatsApp groups is a good alternative.\nWe wish you all the best for the school year, you're gonna absolutely kill it!!! Have so much fun - AskMcGill Team :)"
     const handleSubmit = (e: React.MouseEvent) => {
         e.preventDefault();
         if (prompt.trim()) {
